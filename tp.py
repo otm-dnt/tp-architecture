@@ -17,12 +17,27 @@ class SchoolClass:
 
     def add_student(self, student):
         self.students.append(student)
+
+    def rank_matter_1(self):
+        # trie les étudiants par matière 1, du meilleur au moins bon
+        sorted_students = sorted(self.students, key=lambda s: s.m1, reverse=True)
+        print("Classement matière 1 :")
+        for s in sorted_students:
+            print(f"{s.name}: {s.m1}")
+
+
 if __name__ == "__main__":
+    # Crée la classe avec 3 étudiants
     school_class = SchoolClass()
     school_class.add_student(Student('J', 10, 12, 13))
     school_class.add_student(Student('A', 8, 2, 17))
     school_class.add_student(Student('V', 9, 14, 14))
 
-    # Affichage des étudiants avec leur moyenne
+    # Affichage des moyennes
+    print("Moyennes des étudiants :")
     for student in school_class.students:
         print(f"{student.name}: moyenne = {student.average()}")
+
+    # Tri matière 1
+    print("\n--- Tri matière 1 ---")
+    school_class.rank_matter_1()
